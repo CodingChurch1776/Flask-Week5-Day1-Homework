@@ -1,5 +1,5 @@
 .ct-nav{
-    display: flex
+    display: center;
     justify-content: space-between;
 }
 
@@ -30,3 +30,28 @@ ul#horizontal-list a:nth-last-child(1){
     margin-right: 0.2vw;
 }
 /* End of Nav styles */
+
+/* Start of header*/
+#header-text{
+    padding: 2 vw;
+}
+
+.header-image{
+    width:82%
+    max-width: 100%;
+}
+/* End of Header/Hero Section */
+
+/* Start of Middle Section*/
+#middle-text{
+    text-align: center;
+    padding: 13vh;
+}
+#middle-text h2{
+    padding: 1.5vw;
+}
+
+/* Start of Features Section */
+
+/* End of Features Section */
+
