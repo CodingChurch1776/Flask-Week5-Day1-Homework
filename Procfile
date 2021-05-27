@@ -1,1 +1,1 @@
-web: gunicorn car_inventory:app --preload--timeout 60
+web: gunicorn car_inventory:app --preload --timeout 60
