@@ -1,3 +1,4 @@
+import re
 from flask import Blueprint, request, jsonify
 from car_inventory.helpers import token_required
 from car_inventory.models import User, Car, car_schema, car_schemas, db
@@ -49,4 +50,40 @@ def get_car(current_user_token, id):
     response = car_schema.dump(car)
     return jsonify(response)
 
+    #UPDATE CAR BY ID
+@api.route('/cars/<id>', methods = ['POST', 'PUT'])
+@token_required
+def update_car(current_user_token, id):
+    car = Car.query.get(id)
+    print(car)
     
+    car.name = request.json['name']
+    car.description = request.json['description']
+    car.price = request.json['price']
+    car.rear_view_camera = request.json['rear_view_camera']
+    car.miles_per_trip = request.json['miles_per_trip']
+    car.max_speed = request.json['max_speed']
+    car.dimensions = request.json['dimensions']
+    car.weight = request.json['weight']
+    car.cost_of_custom = request.json['cost_of_custom']
+    car.make = request.json['make']
+    car.user_token = current_user_token.token
+    print(car.name)
+    db.session.commit()
+    response = car_schema.dump(car)
+    return jsonify(response)
+
+# DELETE CAR BY ID
+@api.route('/cars/<id>', methods = ['DELETE'])
+@token_required
+def delete_car(current_user_token, id):
+    car = car.query.get(id)
+    if car:
+        db.session.delete(car)
+        db.session.commit()
+        
+        response = car_schema.dump(car)
+        return jsonify(response)
+    else:
+        return jsonify({'Error':'This car does not exist'})
+
