@@ -77,7 +77,7 @@ def update_car(current_user_token, id):
 @api.route('/cars/<id>', methods = ['DELETE'])
 @token_required
 def delete_car(current_user_token, id):
-    car = car.query.get(id)
+    car = Car.query.get(id)
     if car:
         db.session.delete(car)
         db.session.commit()
