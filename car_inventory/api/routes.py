@@ -50,7 +50,7 @@ def get_car(current_user_token, id):
     response = car_schema.dump(car)
     return jsonify(response)
 
-    #UPDATE CAR BY ID
+#UPDATE CAR BY ID
 @api.route('/cars/<id>', methods = ['POST', 'PUT'])
 @token_required
 def update_car(current_user_token, id):
